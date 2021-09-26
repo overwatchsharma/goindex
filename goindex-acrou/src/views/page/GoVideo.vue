@@ -100,11 +100,10 @@ export default {
       this.suffix = path.substring(index + 1, path.length);
       this.loadSub(path, index);
       this.videoUrl = window.location.origin + path;
-      //this.copyVideoUrl =
-      //this.videoUrl.split("//", 2)[0] +
-      //"//drigio:moviespass@" +
-      //this.videoUrl.split("//", 2)[1];
-      console.log(copyVideoUrl);
+      this.copyVideoUrl = `${
+        this.videoUrl.split("//", 2)[0]
+      }//drigio:moviespass@${this.videoUrl.split("//", 2)[1]}`;
+      console.log(this.copyVideoUrl);
       this.apiVideoUrl = this.options.api + this.videoUrl;
       if (!this.options.api) {
         let options = {
