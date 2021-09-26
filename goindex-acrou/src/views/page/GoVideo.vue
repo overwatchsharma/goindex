@@ -100,11 +100,10 @@ export default {
       this.suffix = path.substring(index + 1, path.length);
       this.loadSub(path, index);
       this.videoUrl = window.location.origin + path;
-      //this.copyVideoUrl =
-      //this.videoUrl.split("//", 2)[0] +
-      //"//drigio:moviespass@" +
-      //this.videoUrl.split("//", 2)[1];
-      console.log(copyVideoUrl);
+      this.copyVideoUrl = `${
+        this.videoUrl.split("//", 2)[0]
+      }//drigio:moviespass@${this.videoUrl.split("//", 2)[1]}`;
+      console.log(this.copyVideoUrl);
       this.apiVideoUrl = this.options.api + this.videoUrl;
       if (!this.options.api) {
         let options = {
@@ -147,7 +146,7 @@ export default {
       });
     },
     copy() {
-      this.$copyText(this.videoUrl);
+      this.$copyText(this.copyVideoUrl);
     },
   },
   computed: {
@@ -192,17 +191,17 @@ export default {
         {
           name: "IINA",
           icon: this.$cdnpath("images/player/iina.png"),
-          scheme: "iina://weblink?url=" + this.videoUrl,
+          scheme: "iina://weblink?url=" + this.copyVideoUrl,
         },
         {
           name: "PotPlayer",
           icon: this.$cdnpath("images/player/potplayer.png"),
-          scheme: "potplayer://" + this.videoUrl,
+          scheme: "potplayer://" + this.copyVideoUrl,
         },
         {
           name: "VLC",
           icon: this.$cdnpath("images/player/vlc.png"),
-          scheme: "vlc://" + this.videoUrl,
+          scheme: "vlc://" + this.copyVideoUrl,
         },
         {
           name: "Thunder",
@@ -217,14 +216,14 @@ export default {
         {
           name: "nPlayer",
           icon: this.$cdnpath("images/player/nplayer.png"),
-          scheme: "nplayer-" + this.videoUrl,
+          scheme: "nplayer-" + this.copyVideoUrl,
         },
         {
           name: "MXPlayer(Free)",
           icon: this.$cdnpath("images/player/mxplayer.png"),
           scheme:
             "intent:" +
-            this.videoUrl +
+            this.copyVideoUrl +
             "#Intent;package=com.mxtech.videoplayer.ad;S.title=" +
             this.title +
             ";end",
@@ -234,7 +233,7 @@ export default {
           icon: this.$cdnpath("images/player/mxplayer.png"),
           scheme:
             "intent:" +
-            this.videoUrl +
+            this.copyVideoUrl +
             "#Intent;package=com.mxtech.videoplayer.pro;S.title=" +
             this.title +
             ";end",
@@ -242,7 +241,7 @@ export default {
       ];
     },
     getThunder() {
-      return Buffer.from("AA" + this.videoUrl + "ZZ").toString("base64");
+      return Buffer.from("AA" + this.copyVideoUrl + "ZZ").toString("base64");
     },
   },
 };
